@@ -133,11 +133,11 @@ def summarize():
 
         for commit in sorted(commits, key=lambda c: c.authored_date):
             authored_dt = datetime.datetime.fromtimestamp(commit.authored_date)
-            if now - authored_dt < datetime.timedelta(days=7):
-                commits_in_range.add((repo, commit))
+            if now - authored_dt < datetime.timedelta(days=8):
+                commits_in_range.add((repo_meta.name, commit))
 
     for repo, commit in sorted(commits_in_range, key=lambda (r,c): c.authored_date):
-        print repo_meta.name, "|", time.ctime(commit.authored_date), "|", commit.summary
+        print repo, "|", time.ctime(commit.authored_date), "|", commit.summary
 
 if __name__ == "__main__":
     gitactivity()
